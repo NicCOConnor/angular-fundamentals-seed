@@ -8,10 +8,13 @@ import {Component} from '@angular/core';
     <button (click)="handleClick()">
       Change Name
     </button>
-    <input type="text" 
-    [value]="name" 
-    (blur)="handleBlur($event)"
-    (input)="handleInput($event)">
+    <input type="text"
+    [ngModel]="name" 
+    (ngModelChange)="handleChange($event)">
+
+    <input type="text"
+    [(ngModel)]="name">
+    
     <div>{{name}}</div>
   </div>
   `
@@ -28,12 +31,7 @@ export class AppComponent {
     this.name = "Nic"
   }
 
-  handleInput(event: any) {
-    this.name = event.target.value;
-  }
-
-  handleBlur(event: any) {
-    this.name = event.target.value;
-    console.log(event);
+  handleChange(value: string) {
+    this.name = value
   }
 }
